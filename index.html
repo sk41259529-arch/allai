@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101225">
+<title>ALL AI — Ton assistant intelligent</title>
+<style>
+:root{--bg:#0d1020;--panel:#171b31;--panel2:#202642;--text:#f5f6ff;--muted:#aab1ce;--accent:#8b7cff;--accent2:#42d6c5;--line:#303653}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#25204b 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 15px;background:var(--accent);color:white;font-weight:650}button.secondary{background:var(--panel2);border:1px solid var(--line)}button:disabled{opacity:.5;cursor:not-allowed}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.sidebar{padding:24px 16px;border-right:1px solid var(--line);background:#111529}.brand{font-size:25px;font-weight:850;letter-spacing:1px;margin:4px 10px 5px}.brand span{color:var(--accent2)}.tagline{color:var(--muted);font-size:12px;margin:0 10px 28px}.nav{display:grid;gap:8px}.nav button{display:flex;align-items:center;gap:12px;text-align:left;background:transparent;color:var(--muted);font-weight:600}.nav button.active,.nav button:hover{background:var(--panel2);color:white}.side-note{margin:28px 8px 0;padding:13px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:12px}
+main{padding:28px;max-width:1100px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.eyebrow{color:var(--accent2);font-size:12px;text-transform:uppercase;letter-spacing:1.7px;font-weight:800}.top h1{margin:5px 0;font-size:clamp(25px,4vw,36px)}.status{border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:99px;color:var(--muted);font-size:12px}
+.hero{padding:28px;border:1px solid #45416f;border-radius:22px;background:linear-gradient(120deg,#28234d,#192943 75%);margin-bottom:22px}.hero h2{font-size:25px;margin:0 0 8px}.hero p{color:#d2d5ed;margin:0;max-width:650px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tile,.work{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:19px}.tile{cursor:pointer;transition:.15s}.tile:hover{transform:translateY(-2px);border-color:var(--accent)}.emoji{font-size:25px}.tile h3{margin:9px 0 4px}.tile p,.muted{color:var(--muted);font-size:13px;margin:0}.view{display:none}.view.active{display:block}.work{margin-top:18px}.work h2{margin:0 0 5px}.field{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#10152a;color:white;outline:none}.field:focus{border-color:var(--accent)}textarea.field{min-height:110px;resize:vertical}.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.output{white-space:pre-wrap;background:#10152a;border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:14px;min-height:54px;color:#e6e8fa}.chatlog{height:340px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:12px;background:#10152a;border:1px solid var(--line);border-radius:14px;margin:14px 0}.bubble{padding:11px 14px;border-radius:14px;max-width:85%;white-space:pre-wrap}.user{align-self:flex-end;background:#5147a5}.bot{align-self:flex-start;background:#252c49}.hint{font-size:12px;color:var(--muted);margin-top:10px}.filebox{padding:20px;border:1px dashed #66628d;border-radius:14px;text-align:center}.preview{max-width:100%;max-height:320px;border-radius:12px;margin-top:12px}.footer{color:#7f87a8;font-size:11px;margin-top:26px;text-align:center}
+@media(max-width:800px){.app{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:12px}.brand{display:inline-block;margin:0 10px}.tagline{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px}.side-note{display:none}main{padding:18px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.hero{padding:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">ALL <span>AI</span></div><p class="tagline">Ton assistant intelligent</p>
+  <nav class="nav">
+    <button class="active" data-view="home">🏠 Accueil</button>
+    <button data-view="chat">💬 Assistant</button>
+    <button data-view="images">🎨 Images</button>
+    <button data-view="study">📚 Devoirs</button>
+    <button data-view="writing">✍️ Textes</button>
+    <button data-view="docs">📄 Documents</button>
+    <button data-view="voice">🎙️ Voix</button>
+  </nav>
+  <div class="side-note">Prototype gratuit<br>Les réponses IA avancées nécessitent une connexion à un fournisseur d'IA.</div>
+</aside>
+<main>
+  <header class="top"><div><div class="eyebrow">Bienvenue sur ton espace</div><h1 id="pageTitle">Que veux-tu faire aujourd'hui ?</h1></div><div class="status">● Mode prototype</div></header>
+  <section class="view active" id="home">
+    <div class="hero"><h2>Une seule application. Plusieurs possibilités.</h2><p>Pose tes questions, prépare tes devoirs, rédige des textes, explore la création d'images et utilise ta voix.</p></div>
+    <div class="grid">
+      <div class="tile" data-go="chat"><div class="emoji">💬</div><h3>Discuter avec l'IA</h3><p>Pose une question et prépare une réponse.</p></div>
+      <div class="tile" data-go="images"><div class="emoji">🎨</div><h3>Créer une image</h3><p>Décris l'image que tu imagines.</p></div>
+      <div class="tile" data-go="study"><div class="emoji">📚</div><h3>Aide aux devoirs</h3><p>Comprends une notion étape par étape.</p></div>
+      <div class="tile" data-go="writing"><div class="emoji">✍️</div><h3>Écrire un texte</h3><p>Prépare un brouillon ou améliore tes idées.</p></div>
+      <div class="tile" data-go="docs"><div class="emoji">📄</div><h3>Comprendre un document</h3><p>Ouvre un fichier texte local.</p></div>
+      <div class="tile" data-go="voice"><div class="emoji">🎙️</div><h3>Parler</h3><p>Fais lire un texte par ton navigateur.</p></div>
+    </div>
+  </section>
+
+  <section class="view" id="chat"><div class="work"><h2>💬 Assistant</h2><p class="muted">Zone de discussion — branche un modèle IA pour obtenir de vraies réponses générées.</p><div class="chatlog" id="chatlog"><div class="bubble bot">Bonjour ! Je suis ALL AI. La connexion au moteur IA n'est pas encore configurée.</div></div><textarea class="field" id="chatInput" placeholder="Écris ta question…"></textarea><div class="row"><button id="sendChat">Envoyer</button><button class="secondary" id="clearChat">Effacer</button></div><div class="hint">Pour l'instant, cette interface est un prototype et ne prétend pas générer de réponses IA sans connexion.</div></div></section>
+
+  <section class="view" id="images"><div class="work"><h2>🎨 Générateur d'images</h2><p class="muted">Écris une description précise de l'image souhaitée.</p><textarea class="field" id="imagePrompt" placeholder="Exemple : une ville futuriste au coucher du soleil, illustration numérique…"></textarea><div class="row"><button id="imageAction">Préparer ma demande</button></div><div class="output" id="imageOutput">La génération réelle sera activée après connexion à un service compatible.</div></div></section>
+
+  <section class="view" id="study"><div class="work"><h2>📚 Aide aux devoirs</h2><p class="muted">Indique le sujet ou colle l'exercice pour préparer une explication.</p><textarea class="field" id="studyInput" placeholder="Colle ici ton exercice ou ta question…"></textarea><div class="row"><button id="studyAction">Préparer l'exercice</button></div><div class="output" id="studyOutput">Le tuteur IA sera disponible après connexion à un modèle.</div></div></section>
+
+  <section class="view" id="writing"><div class="work"><h2>✍️ Atelier d'écriture</h2><p class="muted">Décris le texte que tu veux préparer.</p><textarea class="field" id="writingInput" placeholder="Exemple : un paragraphe pour présenter un projet scolaire…"></textarea><div class="row"><button id="writingAction">Préparer mon texte</button></div><div class="output" id="writingOutput">L'assistant de rédaction sera activé avec le moteur IA.</div></div></section>
+
+  <section class="view" id="docs"><div class="work"><h2>📄 Comprendre un document</h2><p class="muted">Sélectionne un fichier texte (.txt ou .md). Le contenu reste dans ton navigateur.</p><div class="filebox"><input type="file" id="docFile" accept=".txt,.md,text/plain,text/markdown"><div id="docName" class="hint">Aucun fichier sélectionné</div></div><div class="output" id="docOutput">Le texte du document apparaîtra ici. L'analyse intelligente nécessitera une connexion IA.</div></div></section>
+
+  <section class="view" id="voice"><div class="work"><h2>🎙️ Outils vocaux</h2><p class="muted">La lecture vocale utilise les voix disponibles dans ton navigateur.</p><textarea class="field" id="voiceText" placeholder="Écris un texte à faire lire…"></textarea><div class="row"><button id="speak">▶ Lire le texte</button><button class="secondary" id="stopSpeak">■ Arrêter</button><button class="secondary" id="listen">🎤 Dictée vocale</button></div><div class="output" id="voiceOutput">La dictée dépend de la prise en charge par ton navigateur et peut nécessiter une connexion.</div></div></section>
+  <div class="footer">ALL AI • Prototype de démonstration • Tes données de document ne sont pas envoyées à un serveur dans cette version.</div>
+</main>
+</div>
+<script>
+const titles={home:"Que veux-tu faire aujourd'hui ?",chat:"Assistant ALL AI",images:"Création d'images",study:"Aide aux devoirs",writing:"Atelier d'écriture",docs:"Comprendre un document",voice:"Outils vocaux"};
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));document.getElementById('pageTitle').textContent=titles[id]||"ALL AI";window.scrollTo(0,0)}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
+document.getElementById('sendChat').onclick=()=>{const input=document.getElementById('chatInput'),v=input.value.trim();if(!v)return;const log=document.getElementById('chatlog');const u=document.createElement('div');u.className='bubble user';u.textContent=v;log.appendChild(u);const a=document.createElement('div');a.className='bubble bot';a.textContent="Ta question est prête. Pour obtenir une réponse réelle, il faut connecter un fournisseur d'IA à un serveur sécurisé. Ne colle pas de clé API ici.";log.appendChild(a);input.value='';log.scrollTop=log.scrollHeight};
+document.getElementById('clearChat').onclick=()=>document.getElementById('chatlog').innerHTML='<div class="bubble bot">Conversation effacée. Comment puis-je t’aider ?</div>';
+document.getElementById('imageAction').onclick=()=>{let v=document.getElementById('imagePrompt').value.trim();document.getElementById('imageOutput').textContent=v?'Demande préparée : '+v+'\nLa génération d’image réelle nécessite un fournisseur de génération d’images et une connexion sécurisée.':'Écris d’abord une description.'};
+for(const [btn,inp,out,label] of [['studyAction','studyInput','studyOutput','Aide aux devoirs'],['writingAction','writingInput','writingOutput','Rédaction']])document.getElementById(btn).onclick=()=>{let v=document.getElementById(inp).value.trim();document.getElementById(out).textContent=v?'Demande '+label.toLowerCase()+' préparée :\n'+v+'\n\nConnecte un modèle IA pour recevoir une réponse complète.':'Écris d’abord ta demande.'};
+document.getElementById('docFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;document.getElementById('docName').textContent=f.name; if(f.size>1_000_000){document.getElementById('docOutput').textContent='Fichier trop volumineux pour ce prototype (limite : 1 Mo).';return;}try{const t=await f.text();document.getElementById('docOutput').textContent=t.slice(0,12000)||'Le fichier est vide.';}catch{document.getElementById('docOutput').textContent='Impossible de lire ce fichier.'}};
+document.getElementById('speak').onclick=()=>{const t=document.getElementById('voiceText').value.trim();if(!t)return; if(!('speechSynthesis'in window)){document.getElementById('voiceOutput').textContent='Lecture vocale non prise en charge.';return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';speechSynthesis.speak(u);document.getElementById('voiceOutput').textContent='Lecture en cours…'};
+document.getElementById('stopSpeak').onclick=()=>{if('speechSynthesis'in window)speechSynthesis.cancel();document.getElementById('voiceOutput').textContent='Lecture arrêtée.'};
+document.getElementById('listen').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){document.getElementById('voiceOutput').textContent='La dictée vocale n’est pas prise en charge par ce navigateur.';return;}const r=new SR();r.lang='fr-FR';r.onresult=e=>{document.getElementById('voiceText').value=e.results[0][0].transcript;document.getElementById('voiceOutput').textContent='Dictée terminée.'};r.onerror=()=>document.getElementById('voiceOutput').textContent='La dictée n’a pas pu démarrer.';r.start();document.getElementById('voiceOutput').textContent='Écoute en cours…'};
+</script>
+</body></html>
