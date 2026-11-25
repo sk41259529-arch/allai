@@ -3,27 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL AI - Tout en Un</title>
+<title>ALL AI - Crée Tout Avec l'IA</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:Arial;background:#0f0f1a;color:white;text-align:center;padding-bottom:30px}
-header{padding:20px;background:linear-gradient(90deg,#7c3aed,#db2777,#f59e0b,#22c55e);font-size:28px;font-weight:900}
-.tabs{display:flex;justify-content:center;gap:6px;margin:15px;flex-wrap:wrap}
-.tabs button{padding:11px 14px;border:none;border-radius:20px;font-weight:900;cursor:pointer;background:#222;color:white;font-size:14px}
-.tabs button.active{background:white;color:black}
-.box{background:#1a1a2e;margin:15px auto;padding:20px;border-radius:20px;max-width:620px}
-input,select{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;margin-bottom:10px;color:black}
-.btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#db2777);color:white;font-size:18px;font-weight:900;cursor:pointer}
-img,video{width:100%;border-radius:15px;margin-top:15px;background:#000}
-#chatBox{text-align:left;background:#111;padding:12px;border-radius:12px;max-height:300px;overflow:auto;margin-bottom:10px}
-.msg{padding:8px 10px;border-radius:10px;margin:6px 0}
-.me{background:#7c3aed}
-.ai{background:#333}
-.small{font-size:13px;opacity:.7}
+*{box-sizing:border-box} body{margin:0;font-family:'Segoe UI',Arial;background:#080810;color:white;text-align:center;padding-bottom:40px}
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(10,10,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid #222}
+.logo{font-size:24px;font-weight:900;background:linear-gradient(90deg,#a78bfa,#ec4899,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.badge{background:#22c55e;color:black;font-size:11px;padding:5px 10px;border-radius:20px;font-weight:900}
+.hero{padding:35px 18px 10px;background:radial-gradient(circle at 50% 0%,#4c1d95 0%,#080810 65%)}
+.hero h1{font-size:38px;line-height:1.1;margin:10px 0}
+.hero h1 span{background:linear-gradient(90deg,#a78bfa,#ec4899,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{opacity:.75;font-size:16px;line-height:1.5;max-width:520px;margin:0 auto 18px}
+.pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.pills span{background:#1e1e32;border:1px solid #333;padding:8px 12px;border-radius:20px;font-size:13px}
+.tabs{display:flex;justify-content:center;gap:8px;margin:20px 12px;flex-wrap:wrap}
+.tabs button{padding:13px 16px;border:1px solid #333;border-radius:16px;font-weight:900;cursor:pointer;background:#171725;color:white;font-size:14px;transition:.2s}
+.tabs button.active{background:white;color:black;transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.2)}
+.box{background:linear-gradient(180deg,#1a1a2e,#12121f);margin:15px auto;padding:22px;border-radius:24px;max-width:620px;border:1px solid #2a2a3f;box-shadow:0 20px 50px rgba(0,0,0,.4);text-align:left}
+.box h2{margin:0 0 6px;text-align:center}
+.box p.sub{text-align:center;opacity:.7;font-size:14px;margin:0 0 14px}
+input,select{width:100%;padding:15px;border-radius:14px;border:1px solid #333;background:#0d0d18;color:white;font-size:16px;margin-bottom:10px;outline:none}
+input:focus{border-color:#a78bfa}
+.btn{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(90deg,#7c3aed,#db2777);color:white;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(219,39,119,.35)}
+.btn:active{transform:scale(.98)}
+.btn.green{background:linear-gradient(90deg,#16a34a,#22c55e);box-shadow:0 10px 25px rgba(34,197,94,.3)}
+img,video{width:100%;border-radius:18px;margin-top:15px;background:#000;border:1px solid #333}
+#chatBox{text-align:left;background:#0d0d18;padding:12px;border-radius:14px;max-height:320px;overflow:auto;margin-bottom:10px;border:1px solid #222}
+.msg{padding:10px 12px;border-radius:14px;margin:8px 0;line-height:1.5;font-size:15px}
+.me{background:#7c3aed;margin-left:30px}
+.ai{background:#222;margin-right:30px}
+.small{font-size:13px;opacity:.6;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px}
+.card{background:#151526;border:1px solid #2a2a3f;border-radius:18px;padding:14px;text-align:left}
+.card b{font-size:15px}.card p{font-size:13px;opacity:.7;margin:6px 0 0;line-height:1.4}
+footer{opacity:.5;font-size:13px;margin-top:20px}
 </style>
 </head>
 <body>
-<header>🤖 ALL AI</header>
-<p>Ton IA : Images - Vidéos - Chat - Musique</p>
+<header><div class="logo">✨ ALL AI</div><div class="badge">● EN LIGNE</div></header>
+<div class="hero">
+<h1>Crée <span>Images, Vidéos,</span><br>Chat & Musique<br>avec l'IA</h1>
+<p>Le seul site où tu peux tout faire gratuitement. Tape une idée, ALL AI crée pour toi.</p>
+<div class="pills"><span>🎨 100% Gratuit</span><span>⚡ Super Rapide</span><span>📱 Sur Téléphone & PC</span></div>
+</div>
+
 <div class="tabs">
 <button id="bImg" class="active" onclick="showTab('img')">🎨 Images</button>
 <button id="bVid" onclick="showTab('vid')">🎬 Vidéos</button>
@@ -32,138 +54,58 @@ img,video{width:100%;border-radius:15px;margin-top:15px;background:#000}
 </div>
 
 <div id="tab-img" class="box">
-<h2>🎨 Images</h2>
-<input id="imgPrompt" placeholder="Ex: un chat mignon en fruit...">
-<button class="btn" onclick="genImage()">✨ Générer l'image</button>
-<p id="imgStatus"></p>
+<h2>🎨 Générateur d'Images</h2><p class="sub">Décris ton image, ALL AI la dessine pour toi</p>
+<input id="imgPrompt" placeholder="Ex: un chat mignon qui mange une mangue...">
+<button class="btn" onclick="genImage()">✨ Générer mon image</button>
+<p id="imgStatus" class="small"></p>
 <img id="imgResult" style="display:none">
-<a id="imgDl" style="display:none" download="allai-image.jpg"><button class="btn" style="margin-top:10px;background:#22c55e">⬇️ Télécharger</button></a>
+<a id="imgDl" style="display:none" download="allai-image.jpg"><button class="btn green" style="margin-top:10px">⬇️ Télécharger l'image</button></a>
 </div>
 
 <div id="tab-vid" class="box" style="display:none">
-<h2>🎬 Vidéos</h2>
-<input id="vidPrompt" placeholder="Ex: un chat qui danse...">
-<button class="btn" onclick="genVideo()">🎬 Générer la vidéo</button>
-<p id="vidStatus"></p>
+<h2>🎬 Générateur de Vidéos</h2><p class="sub">Ton image devient une vidéo qui bouge</p>
+<input id="vidPrompt" placeholder="Ex: un chat qui danse à Abidjan...">
+<button class="btn" onclick="genVideo()">🎬 Générer ma vidéo</button>
+<p id="vidStatus" class="small"></p>
 <video id="vidResult" controls style="display:none" loop autoplay muted playsinline></video>
-<a id="vidDl" style="display:none" download="allai-video.webm"><button class="btn" style="margin-top:10px;background:#22c55e">⬇️ Télécharger la vidéo</button></a>
+<a id="vidDl" style="display:none" download="allai-video.webm"><button class="btn green" style="margin-top:10px">⬇️ Télécharger la vidéo</button></a>
 </div>
 
 <div id="tab-chat" class="box" style="display:none">
-<h2>💬 Chat avec ALL AI</h2>
-<div id="chatBox"><div class="msg ai">👋 Salut ! Je suis ALL AI. Pose-moi une question !</div></div>
+<h2>💬 Chat avec ALL AI</h2><p class="sub">Pose n'importe quelle question</p>
+<div id="chatBox"><div class="msg ai">👋 Salut ! Je suis ALL AI. Pose-moi une question, raconte-moi une blague, demande-moi un devoir !</div></div>
 <input id="chatInput" placeholder="Ex: Raconte-moi une blague...">
 <button class="btn" onclick="sendChat()">💬 Envoyer</button>
 </div>
 
 <div id="tab-mus" class="box" style="display:none">
-<h2>🎵 Musique IA</h2>
-<input id="musPrompt" placeholder="Ex: Amapiano joyeux...">
-<select id="musStyle">
-<option value="amapiano">🔥 Amapiano</option>
-<option value="afrobeat">🥁 Afrobeat</option>
-<option value="rap">🎤 Rap / Drill</option>
-<option value="chill">😌 Chill / Doux</option>
-<option value="gospel">🙏 Gospel</option>
-</select>
+<h2>🎵 Musique IA</h2><p class="sub">Choisis ton style, ALL AI compose pour toi</p>
+<input id="musPrompt" placeholder="Ex: Amapiano joyeux pour danser...">
+<select id="musStyle"><option value="amapiano">🔥 Amapiano</option><option value="afrobeat">🥁 Afrobeat</option><option value="rap">🎤 Rap / Drill</option><option value="chill">😌 Chill / Doux</option><option value="gospel">🙏 Gospel</option></select>
 <button class="btn" onclick="genMusic()">🎵 Créer ma musique</button>
-<p id="musStatus"></p>
+<p id="musStatus" class="small"></p>
 <audio id="musAudio" controls style="display:none;width:100%;margin-top:10px"></audio>
-<a id="musDl" style="display:none" download="allai-musique.webm"><button class="btn" style="margin-top:10px;background:#22c55e">⬇️ Télécharger la musique</button></a>
-<p class="small">La musique est générée en direct sur ton téléphone / PC, 15 secondes.</p>
+<a id="musDl" style="display:none" download="allai-musique.webm"><button class="btn green" style="margin-top:10px">⬇️ Télécharger la musique</button></a>
 </div>
 
+<div style="max-width:620px;margin:0 auto;padding:0 15px">
+<div class="grid">
+<div class="card"><b>🎨 Images</b><p>Des images comme Midjourney, en 5 secondes.</p></div>
+<div class="card"><b>🎬 Vidéos</b><p>Tes idées deviennent des vidéos qui bougent.</p></div>
+<div class="card"><b>💬 Chat IA</b><p>Comme ChatGPT, il te répond en français.</p></div>
+<div class="card"><b>🎵 Musique</b><p>Amapiano, Afrobeat, Rap... il compose pour toi.</p></div>
+</div>
+</div>
+<footer>© 2026 ALL AI - Créé par Le Tapso 🔥</footer>
+
 <script>
-function showTab(t){
-['img','vid','chat','mus'].forEach(k=>{
-document.getElementById('tab-'+k).style.display=k===t?'block':'none';
-document.getElementById('b'+k.charAt(0).toUpperCase()+k.slice(1)).className=k===t?'active':'';
-});
-}
-function genImage(){
-let p=document.getElementById('imgPrompt').value.trim();
-if(!p) return alert('Écris quelque chose !');
-let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , high quality, detailed, beautiful')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';
-document.getElementById('imgStatus').textContent='⏳ Génération...';
-let img=document.getElementById('imgResult');
-img.onload=()=>{document.getElementById('imgStatus').textContent='✅ Voilà pour : '+p; let a=document.getElementById('imgDl'); a.href=url; a.style.display='block';};
-img.src=url; img.style.display='block';
-}
-async function genVideo(){
-let p=document.getElementById('vidPrompt').value.trim();
-if(!p) return alert('Écris quelque chose !');
-document.getElementById('vidStatus').textContent='⏳ Je crée ton image puis ta vidéo...';
-let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , cinematic, high quality')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';
-let img=new Image(); img.crossOrigin='anonymous';
-img.onload=()=>{
-let canvas=document.createElement('canvas'); canvas.width=768; canvas.height=768;
-let ctx=canvas.getContext('2d');
-let stream=canvas.captureStream(30);
-let rec=new MediaRecorder(stream,{mimeType:'video/webm'});
-let chunks=[]; rec.ondataavailable=e=>{if(e.data.size) chunks.push(e.data)};
-rec.onstop=()=>{let blob=new Blob(chunks,{type:'video/webm'}); let vurl=URL.createObjectURL(blob); let v=document.getElementById('vidResult'); v.src=vurl; v.style.display='block'; let a=document.getElementById('vidDl'); a.href=vurl; a.style.display='block'; document.getElementById('vidStatus').textContent='✅ Voilà ta vidéo pour : '+p;};
-rec.start(); let start=Date.now();
-function draw(){let t=(Date.now()-start)/5000; if(t>=1){rec.stop(); return;} let zoom=1+t*0.25; let w=canvas.width*zoom,h=canvas.height*zoom; let x=(canvas.width-w)/2+Math.sin(t*3)*20; let y=(canvas.height-h)/2; ctx.drawImage(img,x,y,w,h); requestAnimationFrame(draw);} draw();
-};
-img.onerror=()=>{document.getElementById('vidStatus').textContent='❌ Réessaie.'};
-img.src=url;
-}
-async function sendChat(){
-let inp=document.getElementById('chatInput'); let q=inp.value.trim(); if(!q) return;
-let box=document.getElementById('chatBox');
-box.innerHTML+='<div class="msg me">👤 '+q+'</div>'; inp.value='';
-let load=document.createElement('div'); load.className='msg ai'; load.textContent='🤖 ALL AI écrit...'; box.appendChild(load); box.scrollTop=box.scrollHeight;
-try{
-let r=await fetch('https://text.pollinations.ai/'+encodeURIComponent('Tu es ALL AI, un assistant sympa qui parle français simple et drôle. Question: '+q));
-let t=await r.text();
-load.textContent='🤖 ALL AI : '+t;
-}catch(e){ load.textContent='🤖 Oops, réessaie, ma connexion a buggé.'; }
-box.scrollTop=box.scrollHeight;
-}
+function showTab(t){['img','vid','chat','mus'].forEach(k=>{document.getElementById('tab-'+k).style.display=k===t?'block':'none';document.getElementById('b'+k.charAt(0).toUpperCase()+k.slice(1)).className=k===t?'active':'';});window.scrollTo({top:350,behavior:'smooth'});}
+function genImage(){let p=document.getElementById('imgPrompt').value.trim();if(!p) return alert('Écris quelque chose !');let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , high quality, detailed, beautiful')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';document.getElementById('imgStatus').textContent='⏳ Je dessine...';let img=document.getElementById('imgResult');img.onload=()=>{document.getElementById('imgStatus').textContent='✅ Voilà pour : '+p;let a=document.getElementById('imgDl');a.href=url;a.style.display='block';};img.src=url;img.style.display='block';}
+async function genVideo(){let p=document.getElementById('vidPrompt').value.trim();if(!p) return alert('Écris quelque chose !');document.getElementById('vidStatus').textContent='⏳ Je crée ton image puis ta vidéo...';let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , cinematic, high quality')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';let img=new Image();img.crossOrigin='anonymous';img.onload=()=>{let canvas=document.createElement('canvas');canvas.width=768;canvas.height=768;let ctx=canvas.getContext('2d');let stream=canvas.captureStream(30);let rec=new MediaRecorder(stream,{mimeType:'video/webm'});let chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{let blob=new Blob(chunks,{type:'video/webm'});let vurl=URL.createObjectURL(blob);let v=document.getElementById('vidResult');v.src=vurl;v.style.display='block';let a=document.getElementById('vidDl');a.href=vurl;a.style.display='block';document.getElementById('vidStatus').textContent='✅ Voilà ta vidéo pour : '+p;};rec.start();let start=Date.now();function draw(){let t=(Date.now()-start)/5000;if(t>=1){rec.stop();return;}let zoom=1+t*0.25;let w=canvas.width*zoom,h=canvas.height*zoom;let x=(canvas.width-w)/2+Math.sin(t*3)*20;let y=(canvas.height-h)/2;ctx.drawImage(img,x,y,w,h);requestAnimationFrame(draw);}draw();};img.onerror=()=>{document.getElementById('vidStatus').textContent='❌ Réessaie.'};img.src=url;}
+async function sendChat(){let inp=document.getElementById('chatInput');let q=inp.value.trim();if(!q) return;let box=document.getElementById('chatBox');box.innerHTML+='<div class="msg me">👤 '+q+'</div>';inp.value='';let load=document.createElement('div');load.className='msg ai';load.textContent='🤖 ALL AI écrit...';box.appendChild(load);box.scrollTop=box.scrollHeight;try{let r=await fetch('https://text.pollinations.ai/'+encodeURIComponent('Tu es ALL AI, un assistant sympa qui parle français simple et drôle. Question: '+q));let t=await r.text();load.textContent='🤖 ALL AI : '+t;}catch(e){load.textContent='🤖 Oops, réessaie, ma connexion a buggé.';}box.scrollTop=box.scrollHeight;}
 let audioCtx=null;
-function genMusic(){
-let style=document.getElementById('musStyle').value;
-let prompt=document.getElementById('musPrompt').value||style;
-document.getElementById('musStatus').textContent='🎵 Je compose ta musique '+style+'... (15 sec)';
-if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-audioCtx.resume();
-let dest=audioCtx.createMediaStreamDestination();
-let rec=new MediaRecorder(dest.stream,{mimeType:'audio/webm'});
-let chunks=[]; rec.ondataavailable=e=>{if(e.data.size) chunks.push(e.data)};
-rec.onstop=()=>{
-let blob=new Blob(chunks,{type:'audio/webm'}); let url=URL.createObjectURL(blob);
-let a=document.getElementById('musAudio'); a.src=url; a.style.display='block'; a.play();
-let dl=document.getElementById('musDl'); dl.href=url; dl.style.display='block';
-document.getElementById('musStatus').textContent='✅ Voilà ta musique : '+prompt;
-};
-rec.start();
-let bpm = style==='amapiano'?112 : style==='afrobeat'?100 : style==='rap'?140 : style==='gospel'?90 : 80;
-let scales={amapiano:[0,3,5,7,10],afrobeat:[0,2,4,7,9],rap:[0,3,5,7],chill:[0,2,4,7,9],gospel:[0,2,4,5,7]};
-let scale=scales[style]||scales.afrobeat;
-let base=220;
-let start=audioCtx.currentTime;
-for(let i=0;i<60;i++){
-let t=start + i*(60/bpm)/2;
-let note=scale[Math.floor(Math.random()*scale.length)];
-let freq=base*Math.pow(2,note/12)*(Math.random()<0.2?2:1);
-let osc=audioCtx.createOscillator(); osc.type=i%4===0?'sine':'triangle'; osc.frequency.value=freq;
-let g=audioCtx.createGain(); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.25,t+0.02); g.gain.exponentialRampToValueAtTime(0.001,t+0.4);
-osc.connect(g); g.connect(audioCtx.destination); g.connect(dest);
-osc.start(t); osc.stop(t+0.45);
-if(i%2===0){
-let kick=audioCtx.createOscillator(); kick.frequency.setValueAtTime(120,t); kick.frequency.exponentialRampToValueAtTime(40,t+0.12);
-let kg=audioCtx.createGain(); kg.gain.setValueAtTime(0.5,t); kg.gain.exponentialRampToValueAtTime(0.001,t+0.15);
-kick.connect(kg); kg.connect(audioCtx.destination); kg.connect(dest); kick.start(t); kick.stop(t+0.16);
-}
-if(i%4===2){
-let hat=audioCtx.createBufferSource(); let buf=audioCtx.createBuffer(1,audioCtx.sampleRate*0.05,audioCtx.sampleRate); let d=buf.getChannelData(0); for(let j=0;j<d.length;j++) d[j]=Math.random()*2-1;
-hat.buffer=buf; let hg=audioCtx.createGain(); hg.gain.setValueAtTime(0.12,t); hg.gain.exponentialRampToValueAtTime(0.001,t+0.05);
-hat.connect(hg); hg.connect(audioCtx.destination); hg.connect(dest); hat.start(t);
-}
-}
-setTimeout(()=>{rec.stop()},15500);
-}
-document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter') sendChat();});
+function genMusic(){let style=document.getElementById('musStyle').value;let prompt=document.getElementById('musPrompt').value||style;document.getElementById('musStatus').textContent='🎵 Je compose ta musique '+style+'... (15 sec)';if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();audioCtx.resume();let dest=audioCtx.createMediaStreamDestination();let rec=new MediaRecorder(dest.stream,{mimeType:'audio/webm'});let chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{let blob=new Blob(chunks,{type:'audio/webm'});let url=URL.createObjectURL(blob);let a=document.getElementById('musAudio');a.src=url;a.style.display='block';a.play();let dl=document.getElementById('musDl');dl.href=url;dl.style.display='block';document.getElementById('musStatus').textContent='✅ Voilà ta musique : '+prompt;};rec.start();let bpm=style==='amapiano'?112:style==='afrobeat'?100:style==='rap'?140:style==='gospel'?90:80;let scales={amapiano:[0,3,5,7,10],afrobeat:[0,2,4,7,9],rap:[0,3,5,7],chill:[0,2,4,7,9],gospel:[0,2,4,5,7]};let scale=scales[style]||scales.afrobeat;let base=220;let start=audioCtx.currentTime;for(let i=0;i<60;i++){let t=start+i*(60/bpm)/2;let note=scale[Math.floor(Math.random()*scale.length)];let freq=base*Math.pow(2,note/12)*(Math.random()<0.2?2:1);let osc=audioCtx.createOscillator();osc.type=i%4===0?'sine':'triangle';osc.frequency.value=freq;let g=audioCtx.createGain();g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.25,t+0.02);g.gain.exponentialRampToValueAtTime(0.001,t+0.4);osc.connect(g);g.connect(audioCtx.destination);g.connect(dest);osc.start(t);osc.stop(t+0.45);if(i%2===0){let kick=audioCtx.createOscillator();kick.frequency.setValueAtTime(120,t);kick.frequency.exponentialRampToValueAtTime(40,t+0.12);let kg=audioCtx.createGain();kg.gain.setValueAtTime(0.5,t);kg.gain.exponentialRampToValueAtTime(0.001,t+0.15);kick.connect(kg);kg.connect(audioCtx.destination);kg.connect(dest);kick.start(t);kick.stop(t+0.16);}if(i%4===2){let hat=audioCtx.createBufferSource();let buf=audioCtx.createBuffer(1,audioCtx.sampleRate*0.05,audioCtx.sampleRate);let d=buf.getChannelData(0);for(let j=0;j<d.length;j++)d[j]=Math.random()*2-1;hat.buffer=buf;let hg=audioCtx.createGain();hg.gain.setValueAtTime(0.12,t);hg.gain.exponentialRampToValueAtTime(0.001,t+0.05);hat.connect(hg);hg.connect(audioCtx.destination);hg.connect(dest);hat.start(t);}}setTimeout(()=>{rec.stop()},15500);}
+document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
 </script>
 </body>
 </html>
