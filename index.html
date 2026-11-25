@@ -3,112 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL AI - Ton assistant intelligent</title>
+<title>ALL AI - Images & Vidéos</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0f1020;color:white}
-.app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:#171831;padding:20px}
-.sidebar h1{font-size:28px} .sidebar h1 span{color:#7b61ff}
-.sidebar button{display:block;width:100%;padding:12px;margin:8px 0;border:0;border-radius:12px;background:#23244a;color:white;cursor:pointer;text-align:left;font-size:16px}
-.sidebar button.active{background:#7b61ff}
-.main{flex:1;padding:25px;max-width:800px;margin:auto}
-.card{background:#1d1e3a;padding:20px;border-radius:18px;margin:15px 0}
-input,textarea{width:100%;padding:14px;border-radius:12px;border:0;margin:10px 0;font-size:16px}
-.btn{background:#7b61ff;color:white;padding:14px;border:0;border-radius:12px;width:100%;font-size:17px;cursor:pointer;font-weight:bold}
-img{width:100%;border-radius:15px;margin-top:10px}
-.hidden{display:none}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{background:#252650;padding:15px;border-radius:15px;cursor:pointer}
+*{box-sizing:border-box} body{margin:0;font-family:Arial;background:#0f0f1a;color:white;text-align:center}
+header{padding:20px;background:linear-gradient(90deg,#7c3aed,#db2777);font-size:28px;font-weight:900}
+.tabs{display:flex;justify-content:center;gap:10px;margin:15px}
+.tabs button{padding:12px 20px;border:none;border-radius:20px;font-weight:900;cursor:pointer;background:#222;color:white}
+.tabs button.active{background:white;color:black}
+.box{background:#1a1a2e;margin:15px auto;padding:20px;border-radius:20px;max-width:600px}
+input{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;margin-bottom:10px;color:black}
+.btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#db2777);color:white;font-size:18px;font-weight:900;cursor:pointer}
+img,video{width:100%;border-radius:15px;margin-top:15px;background:#000}
+.small{font-size:13px;opacity:.7;margin-top:10px}
 </style>
 </head>
 <body>
-<div class="app">
-<div class="sidebar">
-<h1>ALL <span>AI</span></h1>
-<p>Prototype gratuit</p>
-<button class="active" onclick="show('accueil',this)">🏠 Accueil</button>
-<button onclick="show('chat',this)">💬 Assistant</button>
-<button onclick="show('images',this)">🎨 Images</button>
-<button onclick="show('textes',this)">✍️ Textes</button>
-<button onclick="show('docs',this)">📄 Documents</button>
-<p style="font-size:13px;opacity:.7">ALL AI • Tes données restent sur ton appareil</p>
+<header>🤖 ALL AI</header>
+<p>Ton IA qui crée Images & Vidéos</p>
+<div class="tabs">
+<button id="bImg" class="active" onclick="showTab('img')">🎨 Images</button>
+<button id="bVid" onclick="showTab('vid')">🎬 Vidéos</button>
 </div>
 
-<div class="main">
-<div id="accueil">
-<h2>Bienvenue sur ton ALL AI 👋</h2>
-<p>Une seule application, plusieurs possibilités.</p>
-<div class="grid">
-<div class="tile" onclick="show('chat')">💬<h3>Assistant</h3><p>Pose tes questions</p></div>
-<div class="tile" onclick="show('images')">🎨<h3>Images</h3><p>Crée des images réelles</p></div>
-<div class="tile" onclick="show('textes')">✍️<h3>Textes</h3><p>Atelier d'écriture</p></div>
-<div class="tile" onclick="show('docs')">📄<h3>Documents</h3><p>Comprends tes docs</p></div>
-</div>
+<div id="tab-img" class="box">
+<h2>🎨 Générateur d'Images</h2>
+<input id="imgPrompt" placeholder="Ex: un chat mignon en fruit...">
+<button class="btn" onclick="genImage()">✨ Générer l'image</button>
+<p id="imgStatus"></p>
+<img id="imgResult" style="display:none">
+<a id="imgDl" style="display:none" download="allai-image.jpg"><button class="btn" style="margin-top:10px;background:#22c55e">⬇️ Télécharger l'image</button></a>
 </div>
 
-<div id="chat" class="hidden">
-<h2>💬 Assistant</h2>
-<div class="card" id="chatBox"><p>Salut ! Que veux-tu faire aujourd'hui ? 😊</p></div>
-<input id="chatInput" placeholder="Écris ta question ici...">
-<button class="btn" onclick="repondre()">Envoyer</button>
-</div>
-
-<div id="images" class="hidden">
-<h2>🎨 Générateur d'images</h2>
-<div class="card">
-<p>Décris l'image que tu veux, exemple : <b>tout le monde est en fruit</b></p>
-<textarea id="promptImage" placeholder="Ex: un lion avec des lunettes de soleil, un chien en fruit..."></textarea>
-<button class="btn" onclick="genererImage()">✨ Générer l'image</button>
-<div id="resultatImage"></div>
-</div>
-</div>
-
-<div id="textes" class="hidden">
-<h2>✍️ Atelier d'écriture</h2>
-<div class="card">
-<textarea id="texteInput" placeholder="Écris ton texte ici..."></textarea>
-<button class="btn" onclick="ameliorer()">Améliorer mon texte</button>
-<div id="texteResult"></div>
-</div>
-</div>
-
-<div id="docs" class="hidden">
-<h2>📄 Documents</h2>
-<div class="card"><p>Colle ton document ici pour le résumer.</p><textarea id="docInput" placeholder="Colle ton texte..."></textarea><button class="btn" onclick="resumer()">Résumer</button><div id="docResult"></div></div>
-</div>
-
-</div>
+<div id="tab-vid" class="box" style="display:none">
+<h2>🎬 Générateur de Vidéos</h2>
+<input id="vidPrompt" placeholder="Ex: un chat qui danse...">
+<button class="btn" onclick="genVideo()">🎬 Générer la vidéo</button>
+<p id="vidStatus"></p>
+<video id="vidResult" controls style="display:none" loop autoplay muted playsinline></video>
+<a id="vidDl" style="display:none" download="allai-video.webm"><button class="btn" style="margin-top:10px;background:#22c55e">⬇️ Télécharger la vidéo</button></a>
+<p class="small">La vidéo est créée à partir de ton image, avec un effet de mouvement cinéma de 5 secondes.</p>
 </div>
 
 <script>
-function show(id, btn){
-  ['accueil','chat','images','textes','docs'].forEach(v=>document.getElementById(v).classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  if(btn){document.querySelectorAll('.sidebar button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function showTab(t){
+document.getElementById('tab-img').style.display=t==='img'?'block':'none';
+document.getElementById('tab-vid').style.display=t==='vid'?'block':'none';
+document.getElementById('bImg').className=t==='img'?'active':'';
+document.getElementById('bVid').className=t==='vid'?'active':'';
 }
-function repondre(){
-  let q=document.getElementById('chatInput').value;
-  if(!q) return;
-  document.getElementById('chatBox').innerHTML += `<p><b>Toi:</b> ${q}</p><p><b>ALL AI:</b> Super question ! Pour l'instant je suis en mode démo, mais je vais bientôt pouvoir tout faire comme un vrai assistant. Essaie le générateur d'images, il marche vraiment maintenant ! 🔥</p>`;
-  document.getElementById('chatInput').value='';
+function genImage(){
+let p=document.getElementById('imgPrompt').value.trim();
+if(!p) return alert('Écris quelque chose !');
+let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , high quality, detailed, beautiful')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';
+document.getElementById('imgStatus').textContent='⏳ Génération...';
+let img=document.getElementById('imgResult');
+img.onload=()=>{document.getElementById('imgStatus').textContent='✅ Voilà ton image pour : '+p; let a=document.getElementById('imgDl'); a.href=url; a.style.display='block';};
+img.src=url; img.style.display='block';
 }
-function genererImage(){
-  let prompt=document.getElementById('promptImage').value;
-  if(!prompt){alert("Écris quelque chose d'abord !");return;}
-  document.getElementById('resultatImage').innerHTML='<p>⏳ Génération en cours... attends 5 secondes...</p>';
-  let seed=Math.floor(Math.random()*1000000);
-  let url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&seed=${seed}&nologo=true`;
-  setTimeout(()=>{
-    document.getElementById('resultatImage').innerHTML=`<p>✅ Voilà ton image pour : <b>${prompt}</b></p><img src="${url}"><br><a href="${url}" download style="color:white">📥 Télécharger l'image</a>`;
-  },800);
+async function genVideo(){
+let p=document.getElementById('vidPrompt').value.trim();
+if(!p) return alert('Écris quelque chose pour ta vidéo !');
+document.getElementById('vidStatus').textContent='⏳ Je crée ton image... puis je l\'anime en vidéo (5 sec)...';
+let url='https://image.pollinations.ai/prompt/'+encodeURIComponent(p+' , cinematic, high quality, video frame')+'?width=1024&height=1024&seed='+Math.floor(Math.random()*99999)+'&nologo=true';
+let img=new Image(); img.crossOrigin='anonymous';
+img.onload=()=>{
+let canvas=document.createElement('canvas'); canvas.width=768; canvas.height=768;
+let ctx=canvas.getContext('2d');
+let stream=canvas.captureStream(30);
+let rec=new MediaRecorder(stream,{mimeType:'video/webm'});
+let chunks=[];
+rec.ondataavailable=e=>{if(e.data.size) chunks.push(e.data)};
+rec.onstop=()=>{
+let blob=new Blob(chunks,{type:'video/webm'});
+let vurl=URL.createObjectURL(blob);
+let v=document.getElementById('vidResult'); v.src=vurl; v.style.display='block';
+let a=document.getElementById('vidDl'); a.href=vurl; a.style.display='block';
+document.getElementById('vidStatus').textContent='✅ Voilà ta vidéo pour : '+p;
+};
+rec.start();
+let start=Date.now();
+function draw(){
+let t=(Date.now()-start)/5000;
+if(t>=1){rec.stop(); return;}
+let zoom=1 + t*0.25;
+let w=canvas.width*zoom, h=canvas.height*zoom;
+let x=(canvas.width-w)/2 + Math.sin(t*3)*20;
+let y=(canvas.height-h)/2;
+ctx.drawImage(img,x,y,w,h);
+requestAnimationFrame(draw);
 }
-function ameliorer(){
-  let t=document.getElementById('texteInput').value;
-  document.getElementById('texteResult').innerHTML=`<p><b>Version améliorée :</b></p><p>${t} — Ce texte est déjà bien, continue comme ça, tu es sur la bonne voie ! ✨</p>`;
-}
-function resumer(){
-  let t=document.getElementById('docInput').value;
-  document.getElementById('docResult').innerHTML=`<p><b>Résumé :</b> ${t.substring(0,200)}... (Ceci est un résumé démo)</p>`;
+draw();
+};
+img.onerror=()=>{document.getElementById('vidStatus').textContent='❌ Réessaie, l\'image n\'a pas chargé.'};
+img.src=url;
 }
 </script>
 </body>
